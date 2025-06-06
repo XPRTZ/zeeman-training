@@ -35,45 +35,43 @@ To monitor and troubleshoot your Logic App later, you'll configure diagnostic lo
 ### 3. Create a Logic App
 - Open the [Azure Portal](https://portal.azure.com)
 - Search for "Logic App" in the top search bar
-- Choose **Logic App** and click "Create"
-- Choose **Consumption*** and click "Select"
+- Choose **Logic App** (Microsoft) and click **Create**
+- Choose **Consumption - Multi-tenant** and click **Select**
 - Select your **Resource Group** and **Region**
-- Under **Monitoring**, select the Log Analytics workspace you just created
 - Enter a unique name for the Logic App
-- Leave default settings and click **Review + Create**
+- Enable **Log analytics** and select the workspace that you created in the previous step
+- Leave default settings and click **Review + Create**, then **Create**
 
-> *The Consumption plan is serverless — you only pay when your Logic App runs.*
+> The Consumption plan is serverless — you only pay when your Logic App runs.
 
 ### 4. Open the Logic App Designer
 - Once deployed, go to the Logic App resource
 - In the left menu, select **Logic App Designer**
-- Choose the **Blank Logic App** template
 
 This opens the drag-and-drop workflow editor.
 
 ---
 
 ### 5. Add a Trigger: HTTP Request
-- In the designer, search for “HTTP” and select **When an HTTP request is received**
+- In the designer, click "Add a trigger"
+- Search for “HTTP” and select **When an HTTP request is received**
 - Set the method to **POST**
-- Click **Use sample payload to generate schema**
-- Paste the provided JSON payload (from the training resources)
-- Azure will auto-generate a JSON schema for input validation
+- Add the JSON Schema, provided in the **data** folder in this repo
 
 > This schema ensures only correctly structured data enters your workflow.
 
 ### 6. Add a Condition Step
-- Click **New Step**
-- Search for **Condition**
+- Click the **+** icon below the trigger and select **Add an action**
+- Search for "Condition"
 - Use dynamic content to check one of the payload fields, such as:
   - `orderId` is not empty
-  - `amount` is greater than 0
+  - `totalAmount` is greater than 0
 - You may use the expression editor for conditions (ask instructor if unclear)
 
 This logic ensures only valid test orders continue through the flow.
 
 ### 7. Add a Response Step
-- Inside the **If true** branch, add a **Response** action
+- Inside the **True** branch, add a **Response** action
 - Set the status code to `200` (OK)
 - In the body, return something like:
 ```json
@@ -82,23 +80,30 @@ This logic ensures only valid test orders continue through the flow.
 }
 ```
 
-- (Optional) In the **If false** branch, add another **Response** step with a `400 Bad Request` and a rejection message.
+- (Optional) In the **False** branch, add another **Response** step with a `400` (Bad Request) and a rejection message:
+```json
+{
+  "error": "Invalid order data"
+}
+```
+- (Optional) You can also add a **Terminate** action in this branch to stop further processing. This is useful for debugging and ensuring the workflow stops on invalid data.
 
 ### 8. Save and Test
 - Click **Save** in the Logic App Designer
-- Copy the **HTTP POST URL** shown at the top of the HTTP trigger
+- Open the Http Trigger again
+- Copy the **HTTP URL** shown
 - Use Postman, curl, or the provided test script to send a request
 
 Verify the response and test both valid and invalid scenarios.
 
-### 9. Enable Diagnostics (if not set during creation)
+### 9. (Optional) Enable Diagnostics (if not set during creation)
 - Go to the Logic App in Azure
 - Under **Monitoring**, click **Diagnostic settings**
 - Click **Add diagnostic setting**
+- Name it (e.g., `logicapp-diagnostics`)
 - Select:
-  - **WorkflowRuntime**
-  - **ActionRuntime**
-  - **TriggerRuntime**
+  - **Workflow runtime diagnostic events**
+  - **AllMetrics**
 - Choose **Send to Log Analytics workspace**
 - Select the workspace you created earlier
 - Click **Save**

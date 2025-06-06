@@ -1,43 +1,42 @@
 {
-  "orderId": "OR123456",
-  "orderDate": "2023-10-01T12:00:00Z",
+  "orderDate": "2025-06-05T10:45:00Z",
   "customer": {
-    "customerId": "CUST7890",
-    "name": "John Smith",
-    "email": "john@example.com",
-    "phone": "+1234567890"
+    "customerId": "CUST-98765",
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "phone": "+31-612345678"
   },
   "items": [
     {
-      "productId": "tshirt123",
-      "name": "T-Shirt",
-      "quantity": 5,
-      "unitPrice": 12.5,
-      "totalPrice": 62.5
+      "productId": "SKU-12345",
+      "name": "Wireless Mouse",
+      "quantity": 2,
+      "unitPrice": 25.99,
+      "totalPrice": 51.98
     },
     {
-      "productId": "jeans456",
-      "name": "Jeans",
-      "quantity": 2,
-      "unitPrice": 30,
-      "totalPrice": 60
+      "productId": "SKU-54321",
+      "name": "USB-C Hub",
+      "quantity": 1,
+      "unitPrice": 39.95,
+      "totalPrice": 39.95
     }
   ],
   "shipping": {
     "address": {
-      "street": "Nieuwmarkt 1",
-      "postalCode": "1012 CR",
+      "street": "Main Street 12",
+      "postalCode": "1234 AB",
       "city": "Amsterdam",
       "country": "Netherlands"
     },
     "method": "Standard",
-    "cost": 5
+    "cost": 4.95
   },
   "payment": {
-    "method": "Online",
-    "transactionId": "TXN123456",
+    "method": "Credit Card",
+    "transactionId": "TXN-4567890",
     "paid": true
   },
-  "totalAmount": 127.5,
+  "totalAmount": 96.88,
   "status": "Processing"
 }

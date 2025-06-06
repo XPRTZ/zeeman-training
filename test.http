@@ -1,5 +1,5 @@
 
-POST https://prod-23.germanywestcentral.logic.azure.com:443/workflows/937f910c16c8463d9e4c8cd515dce3ee/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=pEAKmFdJ6ooz9eAX7lJdPFqE6UUIcfO-th47hbtZba8
+POST https://prod-08.germanywestcentral.logic.azure.com:443/workflows/bffd16e9e8024defa2a4650332bd0eff/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=Qd8ajqOvPkwrtPnry0Bdxg1MTABD0ZRtJTNuTskaf28
 Content-Type: application/json
 
 {
