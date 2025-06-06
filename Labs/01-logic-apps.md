@@ -17,12 +17,12 @@ A test system sends an order payload (JSON) to your Logic App. You want to:
 
 ### 1. Create a Resource Group
 If you have not yet created/been assigned a resource group, Create that first:
-- Search for "Resource Group" in the top search bar
-- In the **Resource groups** view, click "Create"
+- Search for `Resource Group` in the top search bar
+- In the **Resource groups** view, click `Create`
 - Choose a unique name within your **Subscription**
 - Choose a **Region** (e.g. **Germany West Central**)
-- Click "Review + create"
-- Click "Create"
+- Click `Review + create`
+- Click `Create`
 
 ### 2. Create a Log Analytics Workspace
 To monitor and troubleshoot your Logic App later, you'll configure diagnostic logging to send data to a Log Analytics Workspace.
@@ -34,11 +34,10 @@ To monitor and troubleshoot your Logic App later, you'll configure diagnostic lo
 
 ### 3. Create a Logic App
 - Open the [Azure Portal](https://portal.azure.com)
-- Search for "Logic App" in the top search bar
+- Search for `Logic App` in the top search bar
 - Choose **Logic App** (Microsoft) and click **Create**
 - Choose **Consumption - Multi-tenant** and click **Select**
-- Select your **Resource Group** and **Region**
-- Enter a unique name for the Logic App
+- Select your **Resource Group** and **Region**, and name the Logic App `OrderReceiverApp`
 - Enable **Log analytics** and select the workspace that you created in the previous step
 - Leave default settings and click **Review + Create**, then **Create**
 
@@ -50,10 +49,8 @@ To monitor and troubleshoot your Logic App later, you'll configure diagnostic lo
 
 This opens the drag-and-drop workflow editor.
 
----
-
 ### 5. Add a Trigger: HTTP Request
-- In the designer, click "Add a trigger"
+- In the designer, click `Add a trigger`
 - Search for “HTTP” and select **When an HTTP request is received**
 - Set the method to **POST**
 - Add the JSON Schema, provided in the **data** folder in this repo
@@ -62,13 +59,13 @@ This opens the drag-and-drop workflow editor.
 
 ### 6. Add a Condition Step
 - Click the **+** icon below the trigger and select **Add an action**
-- Search for "Condition"
+- Search for `Condition`
 - Use dynamic content to check one of the payload fields, such as:
   - `orderId` is not empty
   - `totalAmount` is greater than 0
 - You may use the expression editor for conditions (ask instructor if unclear)
 
-This logic ensures only valid test orders continue through the flow.
+> This logic ensures only valid test orders continue through the flow.
 
 ### 7. Add a Response Step
 - Inside the **True** branch, add a **Response** action
@@ -96,7 +93,12 @@ This logic ensures only valid test orders continue through the flow.
 
 Verify the response and test both valid and invalid scenarios.
 
-### 9. (Optional) Enable Diagnostics (if not set during creation)
+### 9. Set Up Managed Identity
+- Go to **Identity** under your Logic App settings
+- Ensure **System-assigned managed identity** is enabled  
+  This will be used in later labs when connecting to other Azure services (like Service Bus and Storage) without storing credentials
+
+### 10. (Optional) Enable Diagnostics (if not set during creation)
 - Go to the Logic App in Azure
 - Under **Monitoring**, click **Diagnostic settings**
 - Click **Add diagnostic setting**
@@ -109,12 +111,6 @@ Verify the response and test both valid and invalid scenarios.
 - Click **Save**
 
 This will allow you to query execution logs in later labs.
-
-## Additional Checks
-
-- Go to **Identity** under your Logic App settings
-- Ensure **System-assigned managed identity** is enabled  
-  This will be used in later labs when connecting to other Azure services (like Service Bus and Storage) without storing credentials
 
 ## Summary
 You now have a working Logic App that:
