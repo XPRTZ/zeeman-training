@@ -1,0 +1,106 @@
+{
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string"
+    },
+    "orderDate": {
+      "type": "string"
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "unitPrice": {
+            "type": "number"
+          },
+          "totalPrice": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "productId",
+          "name",
+          "quantity",
+          "unitPrice",
+          "totalPrice"
+        ]
+      }
+    },
+    "shipping": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string"
+            },
+            "postalCode": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            }
+          }
+        },
+        "method": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "number"
+        }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "transactionId": {
+          "type": "string"
+        },
+        "paid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "totalAmount": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

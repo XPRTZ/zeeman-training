@@ -1,0 +1,43 @@
+{
+  "orderId": "OR123456",
+  "orderDate": "2023-10-01T12:00:00Z",
+  "customer": {
+    "customerId": "CUST7890",
+    "name": "John Smith",
+    "email": "john@example.com",
+    "phone": "+1234567890"
+  },
+  "items": [
+    {
+      "productId": "tshirt123",
+      "name": "T-Shirt",
+      "quantity": 5,
+      "unitPrice": 12.5,
+      "totalPrice": 62.5
+    },
+    {
+      "productId": "jeans456",
+      "name": "Jeans",
+      "quantity": 2,
+      "unitPrice": 30,
+      "totalPrice": 60
+    }
+  ],
+  "shipping": {
+    "address": {
+      "street": "Nieuwmarkt 1",
+      "postalCode": "1012 CR",
+      "city": "Amsterdam",
+      "country": "Netherlands"
+    },
+    "method": "Standard",
+    "cost": 5
+  },
+  "payment": {
+    "method": "Online",
+    "transactionId": "TXN123456",
+    "paid": true
+  },
+  "totalAmount": 127.5,
+  "status": "Processing"
+}
