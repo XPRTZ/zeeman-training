@@ -32,12 +32,12 @@ To monitor and troubleshoot your Logic App later, you'll configure diagnostic lo
 - Give the workspace a name (e.g., `logicapp-monitoring`)
 - Click **Review + Create**, then **Create**
 
-### 3. Create a Logic App
+### 3. Create a Logic App (OrderIntakeApp)
 - Open the [Azure Portal](https://portal.azure.com)
 - Search for `Logic App` in the top search bar
 - Choose **Logic App** (Microsoft) and click **Create**
 - Choose **Consumption - Multi-tenant** and click **Select**
-- Select your **Resource Group** and **Region**, and name the Logic App `OrderReceiverApp`
+- Select your **Resource Group** and **Region**, and name the Logic App `OrderIntakeApp`
 - Enable **Log analytics** and select the workspace that you created in the previous step
 - Leave default settings and click **Review + Create**, then **Create**
 

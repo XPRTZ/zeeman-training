@@ -39,15 +39,15 @@ When a valid order is received via HTTP, your Logic App should:
 - Assign access to: **Managed identity**
 - Click **Select members**
 - Set **Managed identity** to `Logic App`
-- Select your existing Logic App
+- Select your existing Logic App (OrderIntakeApp)
 - Click **Select**
-- Click **Review + assign** to apply the role
+- Click **Review + assign** to apply the role (sometimes you need to click it twice)
 - Go to the **Overview** tab of your Service Bus Namespace
 - Copy the **Host name** for later use in the Logic App
 
 ### 4. Update Logic App to Send Messages
 
-- Go to your **OrderReceiverApp** Logic App
+- Go to your **OrderIntakeApp** Logic App
 - In the **Logic App Designer**, beneath the **True** branch, click the **+** icon and select **insert a new step**
 - Search for **Service Bus** and select **Send message**
 - Choose **Service Bus - Send message** action
@@ -66,7 +66,7 @@ When a valid order is received via HTTP, your Logic App should:
 ```
 - Click **Save**
 
-### 5. Create the Listener Logic App
+### 5. Create the Listener Logic App (OrderProcessorApp)
 
 - Follow the same steps as in lab 1 to create a new Logic App named `OrderProcessorApp` (see step 3 in Lab 1)
   - Make sure to use the same **Resource Group** and **Region** as your first Logic App
