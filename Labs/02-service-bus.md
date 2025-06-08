@@ -31,7 +31,20 @@ When a valid order is received via HTTP, your Logic App should:
 - Give the queue a name (e.g., `orders`)
 - Leave default settings and click **Create**
 
-### 3. Grant Access to Logic App
+### 3. Enable Diagnostic Settings for Service Bus
+
+- Go to the **Service Bus Namespace**
+- In the left-hand menu, go to **Monitoring > Diagnostic settings**
+- Click **+ Add diagnostic setting**
+- Name it (e.g., `servicebus-logs`)
+- Select:
+  - **AllMetrics**
+  - **OperationalLogs**
+- Choose **Send to Log Analytics workspace**
+- Select your existing workspace
+- Click **Save**
+
+### 4. Grant Access to Logic App
 
 - Still within the Service Bus resource, go to **Access control (IAM)**
 - Click **+ Add > Add role assignment**
@@ -45,7 +58,7 @@ When a valid order is received via HTTP, your Logic App should:
 - Go to the **Overview** tab of your Service Bus Namespace
 - Copy the **Host name** for later use in the Logic App
 
-### 4. Update Logic App to Send Messages
+### 5. Update Logic App to Send Messages
 
 - Go to your **OrderIntakeApp** Logic App
 - In the **Logic App Designer**, beneath the **True** branch, click the **+** icon and select **insert a new step**
@@ -66,7 +79,7 @@ When a valid order is received via HTTP, your Logic App should:
 ```
 - Click **Save**
 
-### 5. Create the Listener Logic App (OrderProcessorApp)
+### 6. Create the Listener Logic App (OrderProcessorApp)
 
 - Follow the same steps as in lab 1 to create a new Logic App named `OrderProcessorApp` (see step 3 in Lab 1)
   - Make sure to use the same **Resource Group** and **Region** as your first Logic App
@@ -74,7 +87,7 @@ When a valid order is received via HTTP, your Logic App should:
 - After creation, go to **Identity** under your Logic App settings and enable System-assigned managed identity.
 - Then, in the **Service Bus Namespace**, go to **Access control (IAM)** and assign the **Azure Service Bus Data Receiver** role to this Logic App.
 
-### 6. Add a Trigger: Peek-Lock Service Bus Message
+### 7. Add a Trigger: Peek-Lock Service Bus Message
 
 - In the **Logic App Designer**, click **Add a trigger**
 - Search for **Service Bus** and select **When a message is received in a queue (peek-lock)**
@@ -84,7 +97,7 @@ When a valid order is received via HTTP, your Logic App should:
 - Leave the other settings as default for now
 > Microsoft: Each managed identity that accesses a queue or topic subscription should use its own Service Bus API connection.
 
-### 7. Add an Action: Process Message
+### 8. Add an Action: Process Message
 
 - Click the **+** icon below the trigger and select **Add an action**
 - Add a **Compose** action and set the **Inputs** to the message body.
@@ -96,7 +109,7 @@ When a valid order is received via HTTP, your Logic App should:
 - The first part of the expression decodes the Base64 content, and the second part extracts the `ContentData` field from the message body.
 > When using the service bus trigger, the message content is delivered in Base64. This is expected behavior and must be decoded to read the original message body.
 
-### 8. Add Complete Message Action
+### 9. Add Complete Message Action
 
 - After processing the message, you need to complete it so it is removed from the queue.
 - Click the **+** icon below the **Compose** action and select **Add an action**
@@ -105,7 +118,7 @@ When a valid order is received via HTTP, your Logic App should:
 - For the **Lock token**, use the dynamic content from the trigger. Type '/' and select **Insert Dynamic Content**. Then select **Lock token** from the list.
 - Click **Save**
 
-### 9. Save and Test End-to-End
+### 10. Save and Test End-to-End
 
 - Click **Save** in both Logic Apps
 - Use Postman, curl, or the provided test script to send a request like you did in Lab 1

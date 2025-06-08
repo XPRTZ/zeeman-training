@@ -1,4 +1,3 @@
-
 # Module 2 – Lab: Build Your First Logic App
 
 ## Objective
