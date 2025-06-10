@@ -72,6 +72,41 @@ To be notified when something goes wrong:
 
 > For example, trigger an alert when a failed Logic App run appears, or when message volume in Service Bus drops below a threshold.
 
+
+#### 7. (Optional) Custom logs from logic apps
+
+Sending custom logs from your logic app to log analytic workspace
+
+ - Go to the **OrderIntakeApp** Logic app designer
+ - Add an action in the **Failed** condition
+ - Search for in actions for "log analytics" and select the **Send data** action
+ - In the step create a new connection with the following specifications:
+    - **Workspace ID**: Find it in the log analytic workspace resource **Overview** tab
+    - **Workspace Key**: Find it in the log analtics workspace **Agents** tab. Use the **Primary key** for the workspace key.
+    - Save the new connection
+ - Specify a request body
+```
+[
+  {
+    "TimeGenerated": "2023-11-14 15:10:02",
+    "Column01": "Value01",
+    "Column02": "Value02",
+    "Column03": "Value03"
+  }
+]
+```
+ - Enter a custom log name, this will be the table name for the custom logs (e.g. OrderIntakeCustomLogs)
+ - Save the changes of the logic app
+
+#### Validating step 7
+It may take a while before the custom logs are visible in the log analytic workspace. (Up to an hour)
+
+ - Send a new request to the **OrderIntakeApp** with a request that will flow through the **Failed** condition of the logic app
+ - Go to log analytic workspace and open **Logs**
+ - Under the Tables the new custom log table should be visible (e.g. from the previous step the table name would be: OrderIntakeCustomLogs_CL)
+ - Query the new custom log table to show the results of your log
+
+
 ## Summary
 
 You've now learned how to:
