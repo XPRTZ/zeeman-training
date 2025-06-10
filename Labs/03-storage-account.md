@@ -105,6 +105,14 @@ When a valid order is received:
   - Use the expression: `orders/@{body('Parse_JSON')?['blobName']}`
 - (Optional) Add another **Compose** step to inspect the full blob content
 
+7. Save and Test End-to-End
+- Click **Save** in both Logic Apps
+- Use Postman, curl, or the provided test script to send a request like you did in Lab 1
+- Verify:
+  - The HTTP-triggered Logic App accepts the order and stores the body in Blob Storage (with the expected filename)
+  - The queue-triggered Logic App picks up the message, retrieves the blob content, and processes it
+- Check the run history of both Logic Apps to see the execution details and any errors
+
 ## Summary
 
 You now have:
