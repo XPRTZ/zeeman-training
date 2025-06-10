@@ -94,7 +94,11 @@ When a valid order is received:
 
 ### 6. Update the OrderProcessorApp: Read Blob Content
 
-- After decoding the Base64 message, add an action: **Get blob content (V2)**
+- After decoding the Base64 message, add a new action to parse the JSON message:
+  - Action: **Parse JSON**
+  - Content: Use the dynamic content from the previous step (the decoded message)
+  - For the schema click **Use sample payload to generate schema** and paste the same JSON structure you used in the Service Bus message
+  - After the **Parse JSON** action, add a new action to retrieve the blob content: **Get blob content (V2)**
 - (IMPORTANT) Create a **NEW** connection using **Managed Identity**
 - Container: `orders`
 - Blob: use dynamic content to retrieve the blob name from the parsed message. Then prefix it with the container name:
